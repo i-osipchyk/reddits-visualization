@@ -1,12 +1,14 @@
 import pandas as pd
 
 
-def read_files(cities_, years_):
+def read_files():
+    cities = ['sydney', 'melbourne', 'brisbane']
+    years = ['2019', '2020', '2021', '2022']
     path = '../../data/cleaned/'
     dataframes_dict = {}
 
-    for city in cities_:
-        for year in years_:
+    for city in cities:
+        for year in years:
             df = pd.read_csv(path + city.capitalize() + '/' + city + '_' + year + '.csv')
             dataframes_dict[city + '_' + year] = df
 
