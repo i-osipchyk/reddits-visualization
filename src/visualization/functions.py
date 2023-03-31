@@ -32,3 +32,11 @@ def set_datetime_index(dataframes_dict):
         dataframes_dict[key] = df
 
     return dataframes_dict
+
+
+def read_and_clean():
+    dataframes_dict = read_files()
+    dataframes_dict = remove_columns(dataframes_dict)
+    dataframes_dict = set_datetime_index(dataframes_dict)
+
+    return dataframes_dict
