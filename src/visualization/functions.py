@@ -42,3 +42,30 @@ def read_and_clean():
     dataframes_dict = set_datetime_index(dataframes_dict)
 
     return dataframes_dict
+
+
+def concat_same_city(dataframes_dict):
+    cities = ['sydney', 'melbourne', 'brisbane']
+    dataframes_concatenated = {}
+
+    for city in cities:
+        # create list which will contain all dataframes from the current city
+        city_list = []
+        # add all dataframes from the current city to the list
+        for key, value in dataframes_dict.items():
+            if key[:-5] == city:
+                city_list.append(value)
+
+        # reset index for concatenating dataframes
+        # for df in city_list:
+        #     df = df.reset_index()
+
+        # concatenate all dataframes from the current city
+        df = city_list[0]
+        for i in range(1, len(city_list)):
+            df = pd.concat([df, city_list[i]])
+
+        # add dataframe to dictionary of concatenated dataframes
+        dataframes_concatenated[city] = df
+
+    return dataframes_concatenated
