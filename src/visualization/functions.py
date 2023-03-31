@@ -21,3 +21,14 @@ def remove_columns(dataframes_dict):
         dataframes_dict[key] = df
 
     return dataframes_dict
+
+
+def set_datetime_index(dataframes_dict):
+    dataframes_dict_copy = dataframes_dict
+    for key, value in dataframes_dict_copy.items():
+        df = value
+        df.set_index('utc_datetime_str', inplace=True)
+        df.index = pd.to_datetime(df.index, errors='coerce')
+        dataframes_dict[key] = df
+
+    return dataframes_dict
