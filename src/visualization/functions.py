@@ -16,7 +16,7 @@ def read_files(cities_, years_):
 def remove_columns(dataframes_dict):
     columns = ['author', 'author_created_utc', 'body', 'subreddit', 'Segment']
     dataframes_dict_copy = dataframes_dict
-    for key, value in dataframes_dict_copy:
+    for key, value in dataframes_dict_copy.items():
         df = value.drop(columns, axis=1)
         dataframes_dict[key] = df
 
